@@ -18,7 +18,7 @@ namespace RedToolTraining
             workspaceDir.Path = @"C:\Users\acooper\Desktop\Training";
 
             //Create a library access instance using the workspace directory
-            using (LibraryAccess libraryAccess = new LibraryAccess(workspaceDir))
+            using(LibraryAccess libraryAccess = new LibraryAccess(workspaceDir))
             {
                 //Create a control interface for training tools
                 using (ViDi2.Training.IControl myControl = new ViDi2.Training.Local.Control(libraryAccess))
@@ -43,7 +43,7 @@ namespace RedToolTraining
                     ).Where(s => ext.Any(e => s.EndsWith(e)));
 
                     //Add each image to the stream's database
-                    foreach (string file in imageFiles)
+                    foreach(string file in imageFiles)
                     {
                         using (ViDi2.FormsImage image = new ViDi2.FormsImage(file))
                         {
@@ -72,7 +72,7 @@ namespace RedToolTraining
                     Console.WriteLine("Starting:");
 
                     //Monitor the progress of the training
-                    while (!myRedTool.Wait(1000))
+                    while(!myRedTool.Wait(1000))
                     {
                         Console.WriteLine(myRedTool.Progress.Description + " " + myRedTool.Progress.ETA.ToString());
                     }
@@ -81,7 +81,7 @@ namespace RedToolTraining
                     myRedTool.Wait();
 
                     //Export the runtime workspace to a file
-                    using (System.IO.FileStream fs = new System.IO.FileStream(@"C:\Users\acooper\Desktop\Training\RedToolRuntime.vrws", System.IO.FileMode.Create))
+                    using(System.IO.FileStream fs = new System.IO.FileStream(@"C:\Users\acooper\Desktop\Training\RedToolRuntime.vrws", System.IO.FileMode.Create))
                     {
                         myWorkspace.ExportRuntimeWorkspace().CopyTo(fs);
                     }
